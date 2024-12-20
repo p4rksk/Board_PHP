@@ -12,11 +12,10 @@ class Board extends CI_Controller {
 		$this->common_use->pc_template('main');
 	}
 
-	public function detail(): void	{
-		base_url('member/joinForm');
-		https://www.kormia.co.kr/member/joinForm
-		http://localhost/board/
-		$this->load->view('hi');
+	public function detail_form(): void	{
+		
+		
+		$this->common_use->pc_template('board/detail');
 	}
 
 	public function write_form(): void	{

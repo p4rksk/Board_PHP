@@ -9,7 +9,7 @@
         <div class="card mb-3">
             <div class="card-body">
                 <h4 class="card-title mb-3">제목</h4>
-                <a href="/board/" class="btn btn-primary">상세보기</a>
+                <a href="<?= base_url('board/detail_form'); ?>" class="btn btn-primary">상세보기</a>
             </div>
         </div>
     
