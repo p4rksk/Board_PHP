@@ -6,12 +6,27 @@
         </form>
     </div>
 
-        <div class="card mb-3">
-            <div class="card-body">
-                <h4 class="card-title mb-3">제목</h4>
-                <a href="<?= base_url('board/detail_form'); ?>" class="btn btn-primary">상세보기</a>
-            </div>
-        </div>
+    <table class="table table-striped table-hover">
+            <thead class="table-dark">
+            <tr>
+                <th>번호</th>
+                <th>글쓴이</th>
+                <th>제목</th>
+                <th>등록일</th>
+            </tr>
+            </thead>
+        <tbody>
+            <?php foreach ($boards as $board): ?>
+            <tr>
+                <td class="ml-2"><?= $board['id'] ?></td>
+                <td><?= $board['author'] ?></td>
+                <td><a href="<?= base_url('board/detail_form'); ?>" style="cursor:pointer"><?= $board['title'] ?></a></td>
+                <td><?= $board['write_date'] ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+
+        </table>
     
 
 
