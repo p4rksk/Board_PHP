@@ -14,15 +14,16 @@ class Board_model extends CI_Model{
         $result = $query-> result_array();
         
         //일자까지만 나오게 날짜 포맷
-        foreach ($result as $row){
-         $row['write_date'] = date('Y-m-d', strtotime($row['write_date']));
+        $result = array_map(function($row) {
+            $row['write_date'] = date('Y-m-d', strtotime($row['write_date']));
+            return $row;
+        }, $result);
+        
 
-        }
+        unset($row); // 참조 해제
 
         return $result;
     }
-
-
 }
 
 
