@@ -4,7 +4,6 @@ class Board_model extends CI_Model{
     
     public function __construct() { 
         parent::__construct(); // 부모 클래스의 생성자 호출
-        $this -> load ->database();
 }
 
     public function select_board() {

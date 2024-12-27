@@ -6,6 +6,7 @@ class User extends CI_Controller {
     public function __construct() {
 		parent::__construct(); // 부모 클래스(CI_Controller)의 생성자 호출
 		$this->load->library('Common_use'); // 'libraries/'밑에 만들어진 클래스 로드
+		$this->load->model('user_model');
 	}
 	
     public function join_form(): void	{
@@ -19,5 +20,29 @@ class User extends CI_Controller {
 	
 		$this->common_use->pc_template('user/login');
 	}
+
+	public function check_username() {
+		$useranme = $this->input->post('usernmae');
+
+		//응답 데이터 초기화
+		$response = ['status' => false, 'message' => ''];
+		
+		//입력이 빈값일 시
+		if ($useranme == '') {
+		$response['message'] = '아이디를 입력하세요';
+		echo json_encode($response);
+		}
+
+		//중복체크
+		$is_exists = $this->user_model->is_username_exists($useranme);
+
+		if ($is_exists) {
+			$response['message'] = '이미 사용중인 아이디입니다.';
+		} else {
+		$response['status'] = true;
+		$response['message'] = '사용 가능한 아이디입니다.';
+		}
+		echo json_encode($response);
 	
+	}
 }

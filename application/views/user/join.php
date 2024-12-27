@@ -7,9 +7,9 @@
         <div class="card-header"><b>회원가입을 해주세요</b></div>
         <div class="card-body">
             <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
-                <div class="d-flex mb-3">
-                    <input type="text" class="form-control" placeholder="Enter username" name="username">
-                    <button type ="button" onclick="" class = "btn btn-primary  btn-block" style="white-space: nowrap; padding: 5px 10px;">중복체크</button>
+                <div class=" mb-3">
+                    <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+                    <span id="usernameMessage" style="color: red;"></span><br>
                 </div>
                 <div class="mb-3">
                     <input type="password" class="form-control" placeholder="Enter password" name="password">
@@ -22,3 +22,21 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function(){
+        $('#username').on('keyup', function (){
+            const username = $(this).val();
+
+            //비어있을 경우 메세지 초기화
+            if(!username){
+                $('#usernameMessage').text('');
+                retrun;
+            }
+
+            $.ajax({
+                url: '/user/check_username',
+            })
+        })
+    })
+</script>
