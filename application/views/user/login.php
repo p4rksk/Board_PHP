@@ -5,7 +5,7 @@
     <div class="card">
         <div class="card-header"><b>로그인을 해주세요</b></div>
         <div class="card-body">
-            <form action="/login" method="post" enctype="application/x-www-form-urlencoded">
+            <form action="<?=base_url('user/login')?>" method="post" enctype="application/x-www-form-urlencoded">
                 <div class="mb-3">
                     <input type="text" class="form-control" placeholder="Enter username" name="username">
                 </div>

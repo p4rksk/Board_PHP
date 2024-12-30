@@ -66,4 +66,30 @@ class User extends CI_Controller {
 		echo json_encode($response);
 	
 	}
+
+	public function login() {
+
+			//사용자 입력 데이터 가져오기
+			$data = [
+				'username' => $this->input->post('username'),
+				'password'=> $this->input->post('password'),
+			];
+
+			$user = $this ->user_model->login_user($data);
+
+			//일치하는 사용자가 있을시 세션에 저장
+			if ($user) {
+				$this->session->set_userdata([
+					'user_id'   => $user['id'],
+					'username'  => $user['username'],
+					'logged_in' => true,
+				]);
+
+				return redirect("board/index");	
+			} else {
+
+				echo '로그인에 실패하였습니다.';
+				return redirect("user/login_form");
+			}
+	}
 }
