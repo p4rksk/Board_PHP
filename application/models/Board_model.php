@@ -53,6 +53,11 @@ class Board_model extends CI_Model{
 
     }
 
+    public function delete_board($id) {
+        $this->db->where("id", $id);
+        $this->db->delete("board");
+    }
+
     
 }
     

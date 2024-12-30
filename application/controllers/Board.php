@@ -95,7 +95,23 @@ class Board extends CI_Controller {
 		redirect('board/index');
 	}
 
+	public function delete($id) {
 
+		$data['board'] = $this->board_model->get_board($id);
+
+		//로그인한 사람과 글쓴사람과 동일한 사람인지 비교하기
+		$user = $this->session->userdata('user_id');
+
+		$author = $data['board']['userId'];
+
+		if ($user !== $author) {
+
+		show_error('삭제권한이 없습니다.');
+		} 
+
+		$this->board_model->delete_board($id);
+		redirect('board/index');
+	}
 }
 	
 

@@ -3,7 +3,9 @@
     <!-- 수정삭제버튼 -->
     <div class="d-flex justify-content-end">
         <a href="<?= base_url('board/update_form/'.$board['boardId']);?>" class="btn btn-warning me-1" >수정</a>
+        <form action="<?= base_url('/board/delete/'.$board['boardId'])?>">
         <button class="btn btn-danger">삭제</button>
+        </form>
     </div>
     <div class="d-flex justify-content-end">
         <b>작성자</b> : <?= $board['username']?>
