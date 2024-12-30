@@ -12,15 +12,23 @@ class Board extends CI_Controller {
 	 public function index(): void	{
 		//$data는 CodeIgniter에서 뷰로 전달할 데이터를 담는 배열입니다.
 		//$data['boards']는 $data 배열의 특정 키('boards')를 사용해 데이터를 저장합니다.
+
+		
 		$data['boards'] =  $this->board_model->select_board();
 	
 		$this->common_use->pc_template('main',$data);
 	}
 
-	public function detail_form(): void	{
+	public function detail_form($id): void	{
 		
-		
-		$this->common_use->pc_template('board/detail');
+		$data['board'] = $this->board_model->get_board($id);
+
+		 // 게시글이 없으면 404 페이지 표시
+		 if (empty($data['board'])) {
+            show_404();
+        }
+
+		$this->common_use->pc_template('board/detail', $data);
 	}
 
 	public function write_form(): void	{
@@ -55,6 +63,7 @@ class Board extends CI_Controller {
 		redirect('board/index');
 
 	}
+
 
 }
 	

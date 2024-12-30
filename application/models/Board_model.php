@@ -34,6 +34,19 @@ class Board_model extends CI_Model{
 
         $this->db->insert('board',$data);
     }
+
+   
+
+    public function get_board($id) {
+        $query = $this->db->query("
+            SELECT b.id, b.title, b.content, u.username
+            FROM board b
+            INNER JOIN User u ON u.id = b.userId
+            WHERE b.id = ?
+        ", [$id]);
+        return $query->row_array();
+    }
+    
 }
 
 
