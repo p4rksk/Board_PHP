@@ -28,14 +28,22 @@
         $('#username').on('keyup', function (){
             const username = $(this).val();
 
-            //비어있을 경우 메세지 초기화
-            if(!username){
-                $('#usernameMessage').text('');
-                retrun;
-            }
 
             $.ajax({
-                url: '/user/check_username',
+                url: '<?= base_url('user/check_username')?>', 
+                type:'POST', //HTTP 타입
+                data:{username: username},
+                dataType:'json',
+                success:function (response) {
+                    if(response.status) {
+                        $('#usernameMessage').css('color', 'green').text(response.message);
+                    }else{
+                        $('#usernameMessage').css('color', 'red').text(response.message);
+                    }
+                },
+                error: function(){
+                    $('#usernameMessage').css('color', 'red').text('서버와 통신에 실패했습니다.');
+                }
             })
         })
     })

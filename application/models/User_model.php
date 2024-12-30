@@ -1,10 +1,10 @@
 <?php
 
-class Board_model extends CI_Model{
+class User_model extends CI_Model{
     
     public function __construct() { 
         parent::__construct(); // 부모 클래스의 생성자 호출
-        $this -> load ->database();
+    
 }
 
     public function join_user() {
@@ -25,7 +25,7 @@ class Board_model extends CI_Model{
     public function is_username_exists($useranme) {
 
         // 일치하는 행이 있는지 확인
-         $query = $this->db->get_where('users', ['username'=> $useranme] );  //SELECT * FROM users WHERE username = '입력된값';
+         $query = $this->db->get_where('user', ['username'=> $useranme] );  //SELECT * FROM users WHERE username = '입력된값';
 
          return $query -> num_rows() > 0;
     }

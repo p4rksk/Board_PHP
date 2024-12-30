@@ -22,7 +22,7 @@ class User extends CI_Controller {
 	}
 
 	public function check_username() {
-		$useranme = $this->input->post('usernmae');
+		$useranme = $this->input->post('username');
 
 		//응답 데이터 초기화
 		$response = ['status' => false, 'message' => ''];
