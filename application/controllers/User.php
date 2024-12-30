@@ -71,14 +71,13 @@ class User extends CI_Controller {
 
 			//사용자 입력 데이터 가져오기
 			$data = [
-				'username' => $this->input->post('username'),
+				'username' => $this->input->post('username'), // input->post('username')서 username은 HTML에 name 속성에 값이랑 동일해야한다.
 				'password'=> $this->input->post('password'),
 			];
 
 			$user = $this ->user_model->login_user($data);
 
-			// print_r($user);
-			// exit;
+			
 
 			//일치하는 사용자가 있을시 세션에 저장
 			if ($user) {

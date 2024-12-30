@@ -25,8 +25,9 @@
         <tbody>
             <?php foreach ($boards as $board): ?>
             <tr>
-                <td class="ml-2"><?= $board['id'] ?></td>
-                <td><?= $board['author'] ?></td>
+              
+                <td class="ml-2"><?= $board['boardId'] ?></td>
+                <td><?= $board['username'] ?></td>
                 <td><a href="<?= base_url('board/detail_form'); ?>" style="cursor:pointer"><?= $board['title'] ?></a></td>
                 <td><?= $board['write_date'] ?></td>
             </tr>

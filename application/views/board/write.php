@@ -2,7 +2,7 @@
     <div class="card">
         <div class="card-header"><b>글 쓰기 화면입니다</b></div>
         <div class="card-body">
-            <form action="/board/save" method="post" enctype="application/x-www-form-urlencoded">
+            <form action="<?= base_url('board/write')?>" method="post" enctype="application/x-www-form-urlencoded">
                 <div class="mb-3">
                     <input type="text" class="form-control" placeholder="Enter title" name="title">
                 </div>

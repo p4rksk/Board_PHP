@@ -8,7 +8,11 @@ class Board_model extends CI_Model{
 
     public function select_board() {
 
-        $query = $this->db->query("SELECT id, title, author, write_date FROM board");
+        $query = $this->db->query("SELECT b.id as boardId,  b.title, b.write_date, u.id as userId, u.username 
+                FROM board b
+                Inner join User u on u.id = b.userId
+                order by b.write_date asc
+                ");
 
         $result = $query-> result_array();
         
@@ -22,6 +26,13 @@ class Board_model extends CI_Model{
         unset($row); // 참조 해제
 
         return $result;
+    }
+
+
+    public function write_board($data, $userId) {
+        $data['userId'] = $userId;
+
+        $this->db->insert('board',$data);
     }
 }
 

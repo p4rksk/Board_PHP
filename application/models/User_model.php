@@ -24,7 +24,7 @@ class User_model extends CI_Model{
         // 일치하는 행이 있는지 확인
          $query = $this->db->get_where('user', ['username'=> $useranme] );  //SELECT * FROM user WHERE username = '입력된값';
 
-         return $query -> num_rows() > 0;
+         return $query -> row_array() ;
     }
 
     public function login_user($data) {
@@ -35,7 +35,8 @@ class User_model extends CI_Model{
       return $query -> row_array();
 
     }
-       
+
+
         
 }
 

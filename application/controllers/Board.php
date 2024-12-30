@@ -7,7 +7,6 @@ class Board extends CI_Controller {
 		parent::__construct(); // 부모 클래스(CI_Controller)의 생성자 호출
 		$this->load->library('Common_use'); // 'libraries/'밑에 만들어진 클래스 로드
 		$this->load->model('board_model');
-		$this->load->model('user_model');
 	}
 	
 	 public function index(): void	{
@@ -26,9 +25,37 @@ class Board extends CI_Controller {
 
 	public function write_form(): void	{
 		
-	
+	   if (!$this->session->userdata('logged_in')){
+		redirect('user/login_form');
+	   }
+		
+
 		$this->common_use->pc_template('board/write');
 	}
+
+	public function write(){
+		
+		//로그인 했는지 확인
+		if (!$this->session->userdata('logged_in')){
+			redirect('user/login_form');
+		   }
+
+
+		$userId = $this->session->userdata('user_id');
+
+		//사용자가 입력한 정보
+		$data = [
+			'title' => $this ->input->post("title"),
+			'content' => $this ->input->post('content'),
+			
+		];
+
+		$this->board_model->write_board($data, $userId);
+		
+		redirect('board/index');
+
+	}
+
 }
 	
 
