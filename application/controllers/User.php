@@ -77,6 +77,9 @@ class User extends CI_Controller {
 
 			$user = $this ->user_model->login_user($data);
 
+			// print_r($user);
+			// exit;
+
 			//일치하는 사용자가 있을시 세션에 저장
 			if ($user) {
 				$this->session->set_userdata([
@@ -87,7 +90,6 @@ class User extends CI_Controller {
 
 				return redirect('board/index');	
 			} else {
-
 				echo '로그인에 실패하였습니다.';
 				return redirect('user/login_form');
 			}

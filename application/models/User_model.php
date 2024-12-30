@@ -32,7 +32,7 @@ class User_model extends CI_Model{
         //일치하는 아이디와 비밀번호 있는지 확인
        $query = $this->db->get_where('user', ['username'=> $data['username'],'password'=> $data['password'] ]);
        
-      return $query -> num_rows() > 0 ;
+      return $query -> row_array();
 
     }
        
