@@ -85,11 +85,22 @@ class User extends CI_Controller {
 					'logged_in' => true,
 				]);
 
-				return redirect("board/index");	
+				return redirect('board/index');	
 			} else {
 
 				echo '로그인에 실패하였습니다.';
-				return redirect("user/login_form");
+				return redirect('user/login_form');
 			}
+	}
+
+	public function logout() {
+		//세션 초기화
+		$this->session->sess_destroy();
+
+		//쿠키 삭제
+		$this->load->helper('cookie');
+        delete_cookie('ci_session');
+
+		redirect('board/index');
 	}
 }

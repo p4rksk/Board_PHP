@@ -30,7 +30,7 @@
             <a class="nav-link" href="<?= base_url('board/write_form'); ?>">글쓰기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/logout">로그아웃</a>
+            <a class="nav-link" href="<?= base_url('user/logout')?>">로그아웃</a>
           </li>
         </ul>
       </div>
