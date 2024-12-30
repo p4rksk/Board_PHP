@@ -64,6 +64,37 @@ class Board extends CI_Controller {
 
 	}
 
+	public function update_form($id){
+
+		$data['board'] = $this->board_model->get_board($id);
+
+		//로그인한 사람과 글쓴사람과 동일한 사람인지 비교하기
+		$user = $this->session->userdata('user_id');
+
+		$author = $data['board']['userId'];
+
+		if ($user !== $author) {
+
+		show_error('수정권한이 없습니다.');
+		} 
+	
+
+		$this->common_use->pc_template('board/update', $data);
+	}
+
+	public function update($id) {
+
+		$data = [
+			'title' => $this->input->post('title'), 
+			'content'=> $this->input->post('content'),
+		];
+
+		$result = $this->board_model->update_board($data,$id);
+
+		
+		redirect('board/index');
+	}
+
 
 }
 	

@@ -39,15 +39,22 @@ class Board_model extends CI_Model{
 
     public function get_board($id) {
         $query = $this->db->query("
-            SELECT b.id, b.title, b.content, u.username
+            SELECT b.id as boardId, b.title, b.content, u.id as userId, u.username
             FROM board b
             INNER JOIN User u ON u.id = b.userId
             WHERE b.id = ?
         ", [$id]);
         return $query->row_array();
     }
+
+    public function update_board($data, $id) {
+        $this->db ->where("id", $id);
+        $this->db->update("board", $data);
+
+    }
+
     
 }
-
+    
 
 ?>
