@@ -21,6 +21,27 @@ class User extends CI_Controller {
 		$this->common_use->pc_template('user/login');
 	}
 
+	public function join(): void {
+		//사용자 입력 데이터 가져오기
+		$data = [
+			'username' => $this->input->post('username'),
+			'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT), // 비밀번호 암호화
+			'email'    => $this->input->post('email')
+		];
+	 
+
+		//회원가입 로직 호출
+		$result =  $this->user_model->join_user($data);
+
+		if ($result){
+			$this->common_use->pc_template('user/login');
+		} else {
+			echo '회원가입에 실패하였습니다.';
+			$this->common_use->pc_template('user/join');
+		}
+		
+	}
+
 	public function check_username() {
 		$useranme = $this->input->post('username');
 

@@ -6,7 +6,7 @@
     <div class="card">
         <div class="card-header"><b>회원가입을 해주세요</b></div>
         <div class="card-body">
-            <form action="/join" method="post" enctype="application/x-www-form-urlencoded">
+            <form action="<?= base_url('user/join')?>" method="post" enctype="application/x-www-form-urlencoded">
                 <div class=" mb-3">
                     <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
                     <span id="usernameMessage" style="color: red;"></span><br>

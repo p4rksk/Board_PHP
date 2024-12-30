@@ -7,16 +7,13 @@ class User_model extends CI_Model{
     
 }
 
-    public function join_user() {
-              
-        
-        // 중복체크가 있어야함.
+    public function join_user($data) {
 
         // DB에 접근 쿼리
         $sql = "INSERT INTO USER (username, password, email, created_at) VALUES(?, ?, ?, now())";
 
         
-        $query = $this->db->query($sql, array($data['username'], $data['email'], $data['password']) ); //$data = 데이터를 주고받는 변수로 사용
+        $query = $this->db->query($sql, array($data['username'], $data['password'], $data['email']) ); //$data = 데이터를 주고받는 변수로 사용
 
         
         return $query;
